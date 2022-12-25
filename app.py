@@ -18,7 +18,8 @@ ASSETS_FOLDER = os.path.join(SRC_FOLDER, "assets")
 df = pd.read_csv('data/df.csv')
 
 data_store = html.Div([dcc.Store(id="filter_data", data=df.to_json()),
-                       #dcc.Store(id="goals-df", data=goals.to_json())
+                       dcc.Store(id="intermediate")
+                       #dcc.Store(id="intermediate", data=goals.to_json())
                        ])
 
 external_style_sheet = glob.glob(os.path.join(

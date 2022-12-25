@@ -11,10 +11,20 @@ Menu = dbc.Row(children=[
         html.Br(),
         dcc.Dropdown(['Uno', 'Dos', 'Tres'], 'Uno', id='Page1Select1'),
         html.Br(),
-        dcc.Dropdown({f'{i}': f'{i}' for i in ['SF', 'Montreal']}, id='Page1Select2'),
+        dcc.Dropdown({f'{i}': f'{i}' for i in ['SF', 'Montreal']}, 'SF', id='Page1Select2'),
     ]),
 ])
 
+###
+@callback(Output('intermediate', 'data'), 
+          Input('filter_data', 'data'),
+          Input('Page1Select2', 'value')
+          )
+def clean_data(data, value):
+    data = pd.read_json(data)
+    data = data[data['City'] == value]
+    return data.to_json(date_format='iso', orient='split')
+###
 
 Page1Box1 = dbc.Row(children=[
     html.Div([
