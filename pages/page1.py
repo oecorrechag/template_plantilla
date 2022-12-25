@@ -1,4 +1,4 @@
-from dash import dcc, html, Input, Output, callback, dash_table
+from dash import dcc, html
 
 from components import menu
 
