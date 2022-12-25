@@ -1,6 +1,6 @@
 from dash import dcc, html
 
-# from components import menu
+import dash_bootstrap_components as dbc
 
 from components.CallbacksPage1 import Menu
 from components.CallbacksPage1 import Page1Box1
@@ -9,20 +9,18 @@ from components.CallbacksPage1 import Page1Graph1
 
 layout1 = html.Div([
 
-    html.Br(),
     dcc.Link('Go to Page 2', href='/page2'),
     html.Br(),
     dcc.Link('Go to Home', href='/'), 
 
-    # menu.layout_menu,
     Menu,
     html.H3('Page 1'),
 
-    # menu.layout_menu1,
-    # menu.layout_menu2,
-    # menu.layout_menu3,
-    Page1Box1,
-    Page1Table, 
-    Page1Graph1,
+    dbc.Row(children=[
+        Page1Box1,
+        Page1Table, 
+        Page1Graph1,
+    ]),
+
 
 ])
