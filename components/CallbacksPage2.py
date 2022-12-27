@@ -43,3 +43,18 @@ def display_value(data):
     data = pd.read_json(data, orient='split')
     page2_grafico1 = fg.barras(data, x="Fruit", y="Amount", color="City")
     return page2_grafico1
+
+
+Page2Graph2 = dbc.Row(children=[
+    html.Div([
+        dcc.Graph(id='page2_grafico2', figure={})
+    ]),
+])
+@callback(
+    Output('page2_grafico2', 'figure'),
+    Input('intermediate', 'data'),
+    )
+def display_value(data):
+    data = pd.read_json(data, orient='split')
+    page2_grafico2 = fg.lineas(data, x="Date", y="Amount", color="City")
+    return page2_grafico2

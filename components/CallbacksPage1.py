@@ -1,4 +1,5 @@
 from dash import dcc, html, dash_table, Input, Output, callback
+from dash_extensions.enrich import ServersideOutput
 import dash_bootstrap_components as dbc
 
 import pandas as pd
@@ -15,14 +16,15 @@ Menu = dbc.Row(children=[
     ]),
 ])
 
-###
-@callback(Output('intermediate', 'data'), 
-          Input('filter_data', 'data'),
-          Input('Page1Select2', 'value')
+### filtros
+@callback(ServersideOutput('intermediate', 'data'), 
+          Input('original_data', 'data'),
+          Input('Page1Select2', 'value'),
+          memoize=True 
           )
-def clean_data(data, value):
+def clean_data(data, Page1Select2):
     data = pd.read_json(data)
-    data = data[data['City'] == value]
+    data = data[data['City'] == Page1Select2]
     return data.to_json(date_format='iso', orient='split')
 ###
 
@@ -33,7 +35,7 @@ Page1Box1 = dbc.Row(children=[
 ])
 @callback(
     Output('page1_info1', 'children'),
-    Input('filter_data', 'data'),
+    Input('original_data', 'data'),
     Input('Page1Select1', 'value'),
     )
 def display_value(data, Page1Select1):
@@ -49,7 +51,7 @@ Page1Table = dbc.Row(children=[
 ])
 @callback(
     Output('page1_info2', 'children'),
-    Input('filter_data', 'data'),
+    Input('original_data', 'data'),
     Input('Page1Select2', 'value'),
     )
 def display_value(data, Page1Select2):
@@ -78,7 +80,7 @@ Page1Graph1 = dbc.Row(children=[
 ])
 @callback(
     Output('page1_grafico1', 'figure'),
-    Input('filter_data', 'data'),
+    Input('original_data', 'data'),
     Input('Page1Select2', 'value'),
     )
 def display_value(data, Page1Select2):

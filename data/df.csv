@@ -1,7 +1,7 @@
-﻿Fruit,Amount,City
-Apples,4,SF
-Oranges,1,SF
-Bananas,2,SF
-Apples,2,Montreal
-Oranges,4,Montreal
-Bananas,5,Montreal
+﻿Fruit,Amount,City,Date
+Apples,4,SF,12/03/1991
+Oranges,1,SF,21/03/1991
+Bananas,2,SF,5/04/1991
+Apples,2,Montreal,21/10/2021
+Oranges,4,Montreal,25/11/2021
+Bananas,5,Montreal,31/12/2021

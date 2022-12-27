@@ -15,9 +15,9 @@ SRC_FOLDER = os.path.join(ROOT_FOLDER, "src/")
 DATA_FOLDER = os.path.join(ROOT_FOLDER, "data/")
 ASSETS_FOLDER = os.path.join(SRC_FOLDER, "assets")
 
-df = pd.read_csv('data/df.csv')
+df = pd.read_csv('data/df.csv', parse_dates=['Date'], dayfirst=True)
 
-data_store = html.Div([dcc.Store(id="filter_data", data=df.to_json()),
+data_store = html.Div([dcc.Store(id="original_data", data=df.to_json()),
                        dcc.Store(id="intermediate")
                        #dcc.Store(id="intermediate", data=goals.to_json())
                        ])
