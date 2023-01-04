@@ -4,8 +4,8 @@ import pandas as pd
 import dash
 import dash_bootstrap_components as dbc
 from dash import Dash, dcc, html, Input, Output, callback
-from components.layouts import header, footer
-from pages import home, page1, page2
+from components.layouts import header, footer, sidebar
+from pages import home, page1, page2, about
 
 import glob
 import os
@@ -19,7 +19,6 @@ df = pd.read_csv('data/df.csv', parse_dates=['Date'], dayfirst=True)
 
 data_store = html.Div([dcc.Store(id="original_data", data=df.to_json()),
                        dcc.Store(id="intermediate")
-                       #dcc.Store(id="intermediate", data=goals.to_json())
                        ])
 
 external_style_sheet = glob.glob(os.path.join(
@@ -44,6 +43,9 @@ app.layout = html.Div([
     dcc.Location(id='url'),
     data_store,
 
+    # Menu
+    html.Aside(className="", children=[sidebar]),
+
     # Header
     html.Div(id='header'),
 
@@ -67,7 +69,8 @@ def routing(path):
         return page1.layout1
     elif path == "/page2":
         return page2.layout2
-
+    elif path == "/about":
+        return about.about_page_content
 
 
 @callback(Output('header', 'children'),

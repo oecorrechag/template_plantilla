@@ -7,7 +7,7 @@ import utils.funtionsGraph as fg
 
 Menu = dbc.Row(children=[
     html.Div([
-        html.H3('Page Menu'),
+        html.H3('Menu'),
         html.Br(),
         dcc.Dropdown({f'Page 2 - {i}': f'{i}' for i in ['London', 'Berlin', 'Paris']}, 'Page 2 - London', id='Page2Select1'),
         html.Br(),

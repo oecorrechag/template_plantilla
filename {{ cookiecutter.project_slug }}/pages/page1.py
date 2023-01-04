@@ -1,4 +1,4 @@
-from dash import dcc, html
+from dash import html
 
 import dash_bootstrap_components as dbc
 
@@ -8,11 +8,6 @@ from components.CallbacksPage1 import Page1Table
 from components.CallbacksPage1 import Page1Graph1
 
 layout1 = html.Div([
-
-    dcc.Link('Go to Page 2', href='/page2'),
-    html.Br(),
-    dcc.Link('Go to Home', href='/'), 
-
     Menu,
     html.H3('Page 1'),
 
@@ -23,4 +18,4 @@ layout1 = html.Div([
     ]),
 
 
-])
+], style={"padding": "0px 0px 0px 100px"})

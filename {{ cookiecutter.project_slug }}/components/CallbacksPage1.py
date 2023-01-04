@@ -8,7 +8,7 @@ import utils.funtionsGraph as fg
 
 Menu = dbc.Row(children=[
     html.Div([
-        html.H3('Page Menu'),
+        html.H3('Menu'),
         html.Br(),
         dcc.Dropdown(['Uno', 'Dos', 'Tres'], 'Uno', id='Page1Select1'),
         html.Br(),
@@ -16,7 +16,7 @@ Menu = dbc.Row(children=[
     ]),
 ])
 
-### filtros
+## filtros
 @callback(ServersideOutput('intermediate', 'data'), 
           Input('original_data', 'data'),
           Input('Page1Select2', 'value'),
@@ -26,7 +26,7 @@ def clean_data(data, Page1Select2):
     data = pd.read_json(data)
     data = data[data['City'] == Page1Select2]
     return data.to_json(date_format='iso', orient='split')
-###
+##
 
 Page1Box1 = dbc.Row(children=[
     html.Div([
