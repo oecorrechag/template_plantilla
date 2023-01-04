@@ -10,9 +10,17 @@ Menu = dbc.Row(children=[
     html.Div([
         html.H3('Menu'),
         html.Br(),
-        dcc.Dropdown(['Uno', 'Dos', 'Tres'], 'Uno', id='Page1Select1'),
+        dbc.Row(children=[
+            dbc.Col(children=[
+                dcc.Dropdown(['Uno', 'Dos', 'Tres'], 'Uno', id='Page1Select1'),
+            ]),
+            dbc.Col(children=[
+                dcc.Dropdown({f'{i}': f'{i}' for i in ['SF', 'Montreal']}, 'SF', id='Page1Select2'),
+            ]),
+        ]),
+
         html.Br(),
-        dcc.Dropdown({f'{i}': f'{i}' for i in ['SF', 'Montreal']}, 'SF', id='Page1Select2'),
+
     ]),
 ])
 
