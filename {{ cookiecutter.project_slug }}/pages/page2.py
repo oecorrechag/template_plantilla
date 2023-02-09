@@ -1,16 +1,14 @@
-from dash import html
+from dash import dcc, html
 
-from components.CallbacksPage2 import Menu
-from components.CallbacksPage2 import Page2Box1
-from components.CallbacksPage2 import Page2Graph1
-from components.CallbacksPage2 import Page2Graph2
+from components.CallbacksPage2 import page2, grafica
 
 layout2 = html.Div([
-    Menu,
+
+    html.Br(),
     html.H3('Page 2'),
-    Page2Box1,
-    Page2Graph1,
-    Page2Graph2,
 
-], style={"padding": "0px 0px 0px 100px"})
+    page2,
 
+    grafica,
+
+])

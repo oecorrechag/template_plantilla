@@ -1,50 +1,35 @@
-
 import pandas as pd
-
-import dash
-import dash_bootstrap_components as dbc
 from dash import Dash, dcc, html, Input, Output, callback
-from components.layouts import header, footer, sidebar
-from pages import home, page1, page2, about
+import dash_bootstrap_components as dbc
 
-import glob
-import os
-ROOT_FOLDER = os.path.abspath(os.path.join(
-    os.path.dirname(os.path.abspath(__file__)), os.pardir))
-SRC_FOLDER = os.path.join(ROOT_FOLDER, "src/")
-DATA_FOLDER = os.path.join(ROOT_FOLDER, "data/")
-ASSETS_FOLDER = os.path.join(SRC_FOLDER, "assets")
+from pages.header import header
+from pages.footer import footer
+from pages.home import home
+from pages.page1 import layout1
+from pages.page2 import layout2
 
-df = pd.read_csv('data/df.csv', parse_dates=['Date'], dayfirst=True)
+
+df = pd.DataFrame({
+    "Fruit": ["Apples", "Oranges", "Bananas", "Apples", "Oranges", "Bananas"],
+    "Amount": [4, 1, 2, 2, 4, 5],
+    "City": ["SF", "SF", "SF", "Montreal", "Montreal", "Montreal"]
+})
 
 data_store = html.Div([dcc.Store(id="original_data", data=df.to_json()),
-                       dcc.Store(id="intermediate")
+                       dcc.Store(id="filter_data"),
                        ])
 
-external_style_sheet = glob.glob(os.path.join(
-    ASSETS_FOLDER, "bootstrap/css") + "/*.css")
-external_style_sheet += glob.glob(os.path.join(ASSETS_FOLDER,
-                                  "css") + "/*.css")
-external_style_sheet += glob.glob(os.path.join(ASSETS_FOLDER,
-                                  "fonts") + "/*.css")
 
-app = dash.Dash(__name__, title="First test",
-                external_stylesheets=[
-                    dbc.themes.BOOTSTRAP] + external_style_sheet,
-                suppress_callback_exceptions=True,
-                )
-
+app = Dash(__name__, title = 'Page test',
+    external_stylesheets=[dbc.themes.BOOTSTRAP],
+    suppress_callback_exceptions=True
+)
 server = app.server
 
-
-
-app.layout = html.Div([
-
-    dcc.Location(id='url'),
+app.layout = dbc.Container([
+    
+    dcc.Location(id='url', refresh=False),
     data_store,
-
-    # Menu
-    html.Aside(className="", children=[sidebar]),
 
     # Header
     html.Div(id='header'),
@@ -55,30 +40,29 @@ app.layout = html.Div([
     # Footer
     html.Div(id='footer'),
 
-])
+], fluid=True)
 
 
-@callback(
-    Output(component_id='page-content', component_property='children'),
-    Input(component_id='url', component_property='pathname')
-)
-def routing(path):
-    if path == "/":
-        return home.home
-    elif path == "/page1":
-        return page1.layout1
-    elif path == "/page2":
-        return page2.layout2
-    elif path == "/about":
-        return about.about_page_content
-
-
+# Para menu
 @callback(Output('header', 'children'),
           Output('footer', 'children'),
           Input('url', 'pathname'))
-def display_page(path):
-    return  header, footer
+def display_page(pathname):
+    return header, footer
 
+# Para las paginas
+@callback(Output('page-content', 'children'),
+          Input('url', 'pathname'))
+def display_page(pathname):
+    if (pathname == '/home') | (pathname == '/'):
+         return home
+    elif pathname == '/page1':
+         return layout1
+    elif pathname == '/page2':
+         return layout2
+    else:
+        return '404'
 
 if __name__ == '__main__':
     app.run_server(debug=True)
+    

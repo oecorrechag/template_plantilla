@@ -1,9 +1,21 @@
 from dash import dcc, html
+import dash_bootstrap_components as dbc
 
-from components.CallbacksHome import Modal
+from components.CallbacksHome import menuHome# , modals
 
-home = html.Div([
+home = dbc.Container([
 
-    Modal
+    html.Br(),
+    html.H3('Home Page'),
 
-], style={"padding": "0px 0px 0px 100px"})
+    dbc.Row([
+        dbc.Col(className="col col-md-10 offset-md-1 col-lg-8 offset-lg-2 pt-2", children=[
+
+            # modals,
+
+            menuHome,
+
+            ])
+    ]),
+
+])
