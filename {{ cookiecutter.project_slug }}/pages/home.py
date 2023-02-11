@@ -15,5 +15,4 @@ home = dbc.Container([
 
         ])
     ]),
-
 ])

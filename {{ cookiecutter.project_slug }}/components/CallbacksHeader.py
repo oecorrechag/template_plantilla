@@ -1,4 +1,4 @@
-from dash import html, Input, Output, State, callback
+from dash import html
 import dash_bootstrap_components as dbc
 
 from utils.consts import GITHUB_PROFILE, LINKEDIN_PROFILE
