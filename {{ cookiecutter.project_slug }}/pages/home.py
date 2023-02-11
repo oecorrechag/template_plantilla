@@ -1,7 +1,7 @@
-from dash import dcc, html
+from dash import html
 import dash_bootstrap_components as dbc
 
-from components.CallbacksHome import menuHome# , modals
+from components.CallbacksHome import menuHome
 
 home = dbc.Container([
 
@@ -11,11 +11,9 @@ home = dbc.Container([
     dbc.Row([
         dbc.Col(className="col col-md-10 offset-md-1 col-lg-8 offset-lg-2 pt-2", children=[
 
-            # modals,
-
             menuHome,
 
-            ])
+        ])
     ]),
 
 ])
