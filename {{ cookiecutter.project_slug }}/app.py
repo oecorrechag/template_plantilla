@@ -8,6 +8,7 @@ from pages.home import home
 from pages.page1 import layout1
 from pages.page2 import layout2
 from pages.about import about
+from pages.errors.error404 import error404
 
 
 df = pd.DataFrame({
@@ -62,9 +63,9 @@ def display_page(pathname):
     elif pathname == '/page2':
          return layout2
     elif pathname == "/about":
-        return about.about
+        return about
     else:
-        return '404'
+        return error404
 
 if __name__ == '__main__':
     app.run_server(debug=True)

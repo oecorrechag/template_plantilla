@@ -3,7 +3,8 @@ import dash_bootstrap_components as dbc
 
 from utils.consts import GITHUB_PROFILE
 
-footer = dbc.Container([
+footer = html.Nav([
+    dbc.Container([
             dbc.Row(children=[
 
                 html.Footer('© copyright, Build with Plotly and ❤ by'),
@@ -11,4 +12,5 @@ footer = dbc.Container([
 
             ], className="row text-center"), 
         ], fluid=True, id="footer", className="pb-4 pt-4"),
+])
         
