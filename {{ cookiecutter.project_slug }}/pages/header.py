@@ -31,6 +31,8 @@ header = html.Nav([
 
                             dbc.NavLink("Page 2", href="/page2", active="partial"),
 
+                            dbc.NavLink("About", href="/about", active="partial"),
+
                             modal,
 
                         ], id="navbar-collapse", is_open=False, navbar=True,

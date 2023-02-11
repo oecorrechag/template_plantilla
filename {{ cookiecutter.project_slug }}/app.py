@@ -7,6 +7,7 @@ from pages.footer import footer
 from pages.home import home
 from pages.page1 import layout1
 from pages.page2 import layout2
+from pages.about import about
 
 
 df = pd.DataFrame({
@@ -60,9 +61,13 @@ def display_page(pathname):
          return layout1
     elif pathname == '/page2':
          return layout2
+    elif pathname == "/about":
+        return about.about
     else:
         return '404'
 
 if __name__ == '__main__':
     app.run_server(debug=True)
     
+# if __name__ == "__main__":
+#     app.run_server(host="0.0.0.0", port=5050)
